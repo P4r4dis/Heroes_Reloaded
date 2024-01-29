@@ -25,6 +25,7 @@ class                       Peasant
 
         bool                isOut(void);
         int                 attack(void);
+        int                 special(void);
 
     private:
         std::string         _name;

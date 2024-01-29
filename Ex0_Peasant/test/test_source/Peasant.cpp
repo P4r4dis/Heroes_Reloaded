@@ -83,3 +83,16 @@ int                     Peasant::attack(void)
     else
         return 0;
 }
+
+int                     Peasant::special(void)
+{
+    if (isOut() == false)
+    {
+        _power -= 0;
+        std::cout << _name << " doesn't know any special move." << std::endl;
+        return 0;
+    }
+    else
+        return 0;
+
+}

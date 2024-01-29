@@ -84,3 +84,24 @@ Test(Peasant, test_Peasant_attack, .init = redirect_all_stdout)
     );
 }
 
+Test(Peasant, test_Peasant_special, .init = redirect_all_stdout)
+{
+    {
+        Peasant peasant("Gildas", 42);
+
+        cr_assert(peasant.getPower() == 42);
+        cr_assert(peasant.special() == 0);
+        cr_assert(peasant.getPower() == 42);
+        peasant.setPower(0);
+        cr_assert(peasant.special() == 0);
+
+    }
+
+    cr_assert_stdout_eq_str
+    (
+        "Gildas goes for an adventure.\n"
+        "Gildas doesn't know any special move.\n"
+        "Gildas is out of power.\n"
+        "Gildas is back to his crops.\n"
+    );
+}
