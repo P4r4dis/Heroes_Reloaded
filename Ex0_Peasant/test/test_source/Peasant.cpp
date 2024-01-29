@@ -1,9 +1,14 @@
 #include "../test_include/Peasant.hpp"
 
 Peasant::Peasant(const std::string &name, int power)    :   _name(name),
-                                                            _hp(BASE_HP),
-                                                            _power(power)
+                                                            _hp(BASE_HP)
 {
+    if (power > BASE_POWER)
+        _power = BASE_POWER;
+    else if (power < 0)
+        _power = 0;
+    else
+        _power = power;
     std::cout   << _name << " goes for an adventure." << std::endl;
 }
 
@@ -33,10 +38,48 @@ int                     Peasant::getPower(void) const
 
 void                    Peasant::setHp(int hp)
 {
-    _hp = hp;
+    if (hp > BASE_HP)
+        _hp = BASE_HP;
+    else if (hp < 0)
+        _hp = 0;
+    else
+        _hp = hp;
 }
 
 void                    Peasant::setPower(int power)
 {
-    _power = power;
+    if (power > BASE_POWER)
+        _power = BASE_POWER;
+    else if (power < 0)
+        _power = 0;
+    else
+        _power = power;
+}
+
+bool                    Peasant::isOut(void)
+{
+    if (_hp <= 0)
+    {
+        std::cout << _name << " is out of combat." << std::endl;
+        return true;
+    }
+    else if (_power <= BASE_COST_POWER)
+    {
+        std::cout << _name << " is out of power." << std::endl;
+        return true;      
+    }
+    else
+        return false;
+}
+
+int                     Peasant::attack(void)
+{
+    if (isOut() == false)
+    {
+        _power -= BASE_COST_POWER;
+        std::cout << _name << " tosses a stone." << std::endl;
+        return BASE_DAMAGE;
+    }
+    else
+        return 0;
 }

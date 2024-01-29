@@ -16,13 +16,15 @@ class                       Peasant
         Peasant(const Peasant &obj);
         ~Peasant(void);
 
-
         const std::string   &getName() const;
         int                 getHp(void) const;
         int                 getPower(void) const;
 
         void                setHp(int hp);
         void                setPower(int power);
+
+        bool                isOut(void);
+        int                 attack(void);
 
     private:
         std::string         _name;
