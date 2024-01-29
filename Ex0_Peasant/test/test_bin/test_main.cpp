@@ -105,3 +105,24 @@ Test(Peasant, test_Peasant_special, .init = redirect_all_stdout)
         "Gildas is back to his crops.\n"
     );
 }
+
+Test(Peasant, test_Peasant_rest, .init = redirect_all_stdout)
+{
+    {
+        Peasant peasant("Gildas", 42);
+
+        cr_assert(peasant.getPower() == 42);
+        peasant.rest();
+        cr_assert(peasant.getPower() == 72);
+        peasant.rest();
+        cr_assert(peasant.getPower() == 100);
+    }
+
+    cr_assert_stdout_eq_str
+    (
+        "Gildas goes for an adventure.\n"
+        "Gildas takes a nap.\n"
+        "Gildas takes a nap.\n"
+        "Gildas is back to his crops.\n"
+    );
+}

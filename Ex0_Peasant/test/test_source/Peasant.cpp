@@ -96,3 +96,14 @@ int                     Peasant::special(void)
         return 0;
 
 }
+
+void                    Peasant::rest(void)
+{
+    if (_power >= 0 && _power <= BASE_POWER)
+    {
+        _power += BASE_CURE_POWER;
+        if (_power > BASE_POWER)
+            _power = BASE_POWER;
+        std::cout << _name << " takes a nap." << std::endl;
+    }
+}
