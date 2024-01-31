@@ -420,6 +420,29 @@ Test(Enchanter, test_Enchanter_attack, .init = redirect_all_stdout)
         "Merlin is back to his crops.\n"
     );
 }
+
+Test(Enchanter, test_Enchanter_special, .init = redirect_all_stdout)
+{
+    {
+        Enchanter enchanter("Merlin", 50);
+
+        cr_assert(enchanter.getPower() == 50);
+        cr_assert(enchanter.special() == 99);
+        cr_assert(enchanter.getPower() == 0);
+        cr_assert(enchanter.special() == 0);
+        cr_assert(enchanter.getPower() == 0);
+    }
+
+    cr_assert_stdout_eq_str
+    (
+        "Merlin goes for an adventure.\n"
+        "Merlin learns magic from his spellbook.\n"
+        "Merlin casts a fireball.\n"
+        "Merlin is out of power.\n"
+        "Merlin closes his spellbook.\n"
+        "Merlin is back to his crops.\n"
+    );
+}
         // "Merlin goes for an adventure.\n"
         // "Merlin learns magic from his spellbook.\n"
         // "Arthur don't know how to fight.\n"

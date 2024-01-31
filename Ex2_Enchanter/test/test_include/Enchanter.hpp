@@ -5,6 +5,9 @@
 
 #define ENCHANTER_ATK_COST_POWER 0
 #define ENCHANTER_ATK_DMG 0
+
+#define ENCHANTER_SPC_COST_POWER 50
+#define ENCHANTER_SPC_DMG 99
 class                   Enchanter : public Peasant
 {
     public:
@@ -13,5 +16,6 @@ class                   Enchanter : public Peasant
         ~Enchanter(void);
 
         int             attack(void);
+        int             special(void);
 };
 #endif //               !__ENCHANTER_HPP__

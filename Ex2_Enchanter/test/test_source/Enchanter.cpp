@@ -27,3 +27,15 @@ int                 Enchanter::attack(void)
     else
         return ENCHANTER_ATK_DMG;
 }
+
+int                 Enchanter::special(void)
+{
+    if (!isOut())
+    {
+        setPower(getPower() - ENCHANTER_SPC_COST_POWER);
+        std::cout << getName() << " casts a fireball." << std::endl;
+        return ENCHANTER_SPC_DMG;
+    }
+    else
+        return 0;
+}
