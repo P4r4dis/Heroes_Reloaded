@@ -27,6 +27,7 @@ class                       Peasant
         int                 attack(void);
         int                 special(void);
         void                rest(void);
+        void                damage(int damage);
 
     private:
         std::string         _name;

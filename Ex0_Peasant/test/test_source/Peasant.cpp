@@ -107,3 +107,17 @@ void                    Peasant::rest(void)
         std::cout << _name << " takes a nap." << std::endl;
     }
 }
+
+void                    Peasant::damage(int damage)
+{
+    if (isOut() == false)
+    {
+        _hp -= damage;
+        if (isOut() == false)
+            std::cout << _name << " takes " << damage << " damage." << std::endl;
+        else
+            isOut();
+        if (_hp < 0)
+            _hp = 0;
+    }
+}
