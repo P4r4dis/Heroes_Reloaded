@@ -22,15 +22,15 @@ EX1_SRC_TEST			=	$(EX1_TST_PATH)/$(NAME_EX1)_test.cpp
 TEST_NAME_EX1 			= 	test_$(NAME_EX1)
 
 #################################################
-# EX2_PATH 				= 	./Ex2_Roger
-# EX2_SRC_PATH			=	./Ex2_Roger/source
-# EX2_TST_PATH			=	./Ex2_Roger/test
-# EX2_INC_PATH			=	./Ex2_Roger/include
-# NAME_EX2				=	Ex2
-# # EX0_SRC					=	$(EX0_SRC_PATH)/.cpp
+EX2_PATH 				= 	./Ex2_Enchanter
+EX2_SRC_PATH			=	./Ex2_Enchanter/source
+EX2_TST_PATH			=	./Ex2_Enchanter/test
+EX2_INC_PATH			=	./Ex2_Enchanter/include
+NAME_EX2				=	Ex2
+# EX0_SRC					=	$(EX0_SRC_PATH)/.cpp
 
-# EX2_SRC_TEST			=	$(EX2_TST_PATH)/$(NAME_EX2)_test.cpp
-# TEST_NAME_EX2 			= 	test_$(NAME_EX2)
+EX2_SRC_TEST			=	$(EX2_TST_PATH)/$(NAME_EX2)_test.cpp
+TEST_NAME_EX2 			= 	test_$(NAME_EX2)
 
 #################################################
 # EX3_PATH 				= 	./Ex3_Carrier
@@ -75,7 +75,7 @@ clean					:
 							$(RM) $(OBJS)
 							@$(MAKE) $(CLEAN) -C $(EX0_TST_PATH)
 							@$(MAKE) $(CLEAN) -C $(EX1_TST_PATH)
-# @$(MAKE) $(CLEAN) -C $(EX2_TST_PATH)
+							@$(MAKE) $(CLEAN) -C $(EX2_TST_PATH)
 # @$(MAKE) $(CLEAN) -C $(EX3_TST_PATH)
 # @$(MAKE) $(CLEAN) -C $(EX4_TST_PATH)
 # @$(MAKE) $(CLEAN) -C $(EX5_TST_PATH)
@@ -83,7 +83,7 @@ clean					:
 fclean					:	clean
 							$(RM) $(NAME) $(TEST_NAME_EX0)
 							$(RM) $(NAME) $(TEST_NAME_EX1)
-# $(RM) $(NAME) $(TEST_NAME_EX2)
+							$(RM) $(NAME) $(TEST_NAME_EX2)
 # $(RM) $(NAME) $(TEST_NAME_EX3)
 # $(RM) $(NAME) $(TEST_NAME_EX4)
 # $(RM) $(NAME) $(TEST_NAME_EX5)
@@ -91,8 +91,8 @@ fclean					:	clean
 							@$(MAKE) $(FCLEAN) -C $(EX0_PATH)
 							@$(MAKE) $(FCLEAN) -C $(EX1_TST_PATH)
 							@$(MAKE) $(FCLEAN) -C $(EX1_PATH)
-# @$(MAKE) $(FCLEAN) -C $(EX2_TST_PATH)
-# @$(MAKE) $(FCLEAN) -C $(EX2_PATH)
+							@$(MAKE) $(FCLEAN) -C $(EX2_TST_PATH)
+							@$(MAKE) $(FCLEAN) -C $(EX2_PATH)
 # @$(MAKE) $(FCLEAN) -C $(EX3_TST_PATH)
 # @$(MAKE) $(FCLEAN) -C $(EX3_PATH)
 # @$(MAKE) $(FCLEAN) -C $(EX4_TST_PATH)
@@ -110,9 +110,9 @@ Ex1 					: 	fclean
 							@$(MAKE) -C $(EX1_PATH)
 							$(EX1_PATH)/$(NAME_EX1)
 
-# Ex2 					: 	fclean
-# 							@$(MAKE) -C $(EX2_PATH)
-# 							$(EX2_PATH)/$(NAME_EX2)
+Ex2 					: 	fclean
+							@$(MAKE) -C $(EX2_PATH)
+							$(EX2_PATH)/$(NAME_EX2)
 
 # Ex3 					: 	fclean
 # 							@$(MAKE) -C $(EX3_PATH)
@@ -136,10 +136,10 @@ test_run_Ex1			:	fclean
 							$(EX1_TST_PATH)/$(TEST_NAME_EX1)
 							gcovr --exclude-unreachable-branches --exclude-throw-branches -r . --txt --html-details coverage.html
 
-# test_run_Ex2			:	fclean
-# 							@$(MAKE) -C $(EX2_TST_PATH)
-# 							$(EX2_TST_PATH)/$(TEST_NAME_EX2)
-# 							gcovr --exclude-unreachable-branches --exclude-throw-branches -r . --txt --html-details coverage.html
+test_run_Ex2			:	fclean
+							@$(MAKE) -C $(EX2_TST_PATH)
+							$(EX2_TST_PATH)/$(TEST_NAME_EX2)
+							gcovr --exclude-unreachable-branches --exclude-throw-branches -r . --txt --html-details coverage.html
 
 # test_run_Ex3			:	fclean
 # 							@$(MAKE) -C $(EX3_TST_PATH)
@@ -163,9 +163,9 @@ tests_run				:	fclean
 							@$(MAKE) tests_run_Ex1
 							@echo "Press Enter to continue to the next test (Ex2)..."
 							@read dummy
-# @$(MAKE) tests_run_Ex2
-# @echo "Press Enter to continue to the next test (Ex3)..."
-# @read dummy
+							@$(MAKE) tests_run_Ex2
+							@echo "Press Enter to continue to the next test (Ex3)..."
+							@read dummy
 # @$(MAKE) tests_run_Ex3
 # @echo "Press Enter to continue to the next test (Ex4)..."
 # @read dummy
@@ -177,4 +177,5 @@ tests_run				:	fclean
 .PHONY					: 	all clean fclean re \
 							tests_run \
 							Ex0 test_run_Ex0 \
-							Ex1 test_run_Ex1
+							Ex1 test_run_Ex1 \
+							Ex2 test_run_Ex2
