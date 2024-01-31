@@ -15,3 +15,15 @@ Enchanter::~Enchanter(void)
 {
     std::cout << getName() << " closes his spellbook." << std::endl;
 }
+
+int                 Enchanter::attack(void)
+{
+    if (!isOut())
+    {
+        setPower(getPower() - ENCHANTER_ATK_COST_POWER);
+        std::cout << getName() << " don't know how to fight." << std::endl;
+        return ENCHANTER_ATK_DMG;
+    }
+    else
+        return ENCHANTER_ATK_DMG;
+}
