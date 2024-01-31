@@ -328,3 +328,29 @@ Test(Knight, test_Knight_damage, .init = redirect_all_stdout)
         "Arthur is back to his crops.\n"
     );
 }
+
+Test(Knight, test_Knight_mainFunction, .init = redirect_all_stdout)
+{
+    {
+        Knight knight("Arthur", 20);
+
+        cr_assert(knight.attack() == 20);
+        cr_assert(knight.special() == 0);
+        knight.rest();
+        cr_assert(knight.special() == 50);
+        knight.damage(50);
+    }
+
+    cr_assert_stdout_eq_str
+    (
+        "Arthur goes for an adventure.\n"
+        "Arthur vows to protect the kingdom.\n"
+        "Arthur strikes with his sword.\n"
+        "Arthur is out of power.\n"
+        "Arthur eats.\n"
+        "Arthur impales his ennemy.\n"
+        "Arthur takes 50 damage.\n"
+        "Arthur takes off his armor.\n"
+        "Arthur is back to his crops.\n"
+    );
+}

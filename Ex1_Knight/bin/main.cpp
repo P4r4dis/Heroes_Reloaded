@@ -1,13 +1,15 @@
 #include "../include/Peasant.hpp"
-
+#include "../include/Knight.hpp"
 
 
 int main(void)
 {
-    Peasant     peasant("Gildas", 42);
-    
-    peasant.damage(50);
-    peasant.damage(100);
-    peasant.damage(200);
+    Knight knight("Arthur", 20);
+
+    knight.attack();
+    knight.special();
+    knight.rest();
+    knight.special();
+    knight.damage(50);
     return 0;
 }
