@@ -181,7 +181,7 @@ Test(Knight, test_Knight_class_implementation, .init = redirect_all_stdout)
 
         cr_assert(knight.getName() == "Arthur");
 
-        Peasant knight2(knight);
+        Knight knight2(knight);
 
         cr_assert(knight.getHp() == 100);
         knight.setHp(110);
@@ -208,6 +208,8 @@ Test(Knight, test_Knight_class_implementation, .init = redirect_all_stdout)
     (
         "Arthur goes for an adventure.\n"
         "Arthur vows to protect the kingdom.\n"
+        "Arthur goes for an adventure.\n"
+        "Arthur takes off his armor.\n"
         "Arthur is back to his crops.\n"
         "Arthur takes off his armor.\n"
         "Arthur is back to his crops.\n"
@@ -290,6 +292,38 @@ Test(Knight, test_Knight_rest, .init = redirect_all_stdout)
         "Arthur impales his ennemy.\n"
         "Arthur eats.\n"
         "Arthur eats.\n"
+        "Arthur takes off his armor.\n"
+        "Arthur is back to his crops.\n"
+    );
+}
+
+Test(Knight, test_Knight_damage, .init = redirect_all_stdout)
+{
+    {
+        Knight knight("Arthur", 20);
+
+        cr_assert(knight.getPower() == 20);
+        cr_assert(knight.attack() == 20);
+        cr_assert(knight.getPower() == 10);
+        cr_assert(knight.special() == 0);
+        cr_assert(knight.getPower() == 10);
+        knight.rest();
+        cr_assert(knight.getPower() == 60);
+        cr_assert(knight.special() == 50);
+        cr_assert(knight.getPower() == 30);
+        knight.damage(50);
+        cr_assert(knight.getHp() == 50);
+    }
+
+    cr_assert_stdout_eq_str
+    (
+        "Arthur goes for an adventure.\n"
+        "Arthur vows to protect the kingdom.\n"
+        "Arthur strikes with his sword.\n"
+        "Arthur is out of power.\n"
+        "Arthur eats.\n"
+        "Arthur impales his ennemy.\n"
+        "Arthur takes 50 damage.\n"
         "Arthur takes off his armor.\n"
         "Arthur is back to his crops.\n"
     );
