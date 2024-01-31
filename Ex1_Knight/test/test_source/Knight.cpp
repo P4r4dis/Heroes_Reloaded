@@ -36,3 +36,9 @@ int             Knight::special(void)
     else
         return 0;
 }
+
+void            Knight::rest(void)
+{
+    setPower(getPower() + KNIGHT_CURE_POWER);
+    std::cout << getName() << " eats." << std::endl;
+}

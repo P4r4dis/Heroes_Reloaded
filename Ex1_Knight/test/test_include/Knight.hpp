@@ -8,6 +8,8 @@
 
 #define KNIGHT_SPC_COST_POWER 30
 #define KNIGHT_SPC_DMG 50
+
+#define KNIGHT_CURE_POWER 50
 class                       Knight : public Peasant
 {
     public:
@@ -17,6 +19,7 @@ class                       Knight : public Peasant
 
         int                 attack(void);
         int                 special(void);
+        void                rest(void);
     private:
 };
 #endif //                   !__KNIGHT_HPP__
