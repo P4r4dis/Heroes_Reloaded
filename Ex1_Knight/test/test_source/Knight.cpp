@@ -24,3 +24,15 @@ int             Knight::attack(void)
     else
         return 0;
 }
+
+int             Knight::special(void)
+{
+    if (!isOut())
+    {
+        setPower(getPower() - KNIGHT_SPC_COST_POWER);
+        std::cout << getName() << " impales his ennemy." << std::endl;
+        return KNIGHT_SPC_DMG;
+    }
+    else
+        return 0;
+}

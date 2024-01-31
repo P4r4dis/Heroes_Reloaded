@@ -236,3 +236,26 @@ Test(Knight, test_Knight_attack, .init = redirect_all_stdout)
         "Arthur is back to his crops.\n"
     );
 }
+
+Test(Knight, test_Knight_special, .init = redirect_all_stdout)
+{
+    {
+        Knight knight("Arthur", 30);
+
+        cr_assert(knight.getPower() == 30);
+        cr_assert(knight.special() == 50);
+        cr_assert(knight.getPower() == 0);
+        cr_assert(knight.special() == 0);
+        cr_assert(knight.getPower() == 0);
+    }
+
+    cr_assert_stdout_eq_str
+    (
+        "Arthur goes for an adventure.\n"
+        "Arthur vows to protect the kingdom.\n"
+        "Arthur impales his ennemy.\n"
+        "Arthur is out of power.\n"
+        "Arthur takes off his armor.\n"
+        "Arthur is back to his crops.\n"
+    );
+}

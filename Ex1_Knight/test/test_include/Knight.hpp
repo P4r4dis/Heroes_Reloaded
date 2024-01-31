@@ -6,7 +6,8 @@
 #define KNIGHT_ATK_COST_POWER 10
 #define KNIGHT_ATK_DMG 20
 
-
+#define KNIGHT_SPC_COST_POWER 30
+#define KNIGHT_SPC_DMG 50
 class                       Knight : public Peasant
 {
     public:
@@ -15,6 +16,7 @@ class                       Knight : public Peasant
         ~Knight(void);
 
         int                 attack(void);
+        int                 special(void);
     private:
 };
 #endif //                   !__KNIGHT_HPP__
