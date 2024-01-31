@@ -13,6 +13,8 @@ class                       Knight : public Peasant
         Knight(const std::string &name, int power);
         Knight(const Knight &obj);
         ~Knight(void);
+
+        int                 attack(void);
     private:
 };
 #endif //                   !__KNIGHT_HPP__
