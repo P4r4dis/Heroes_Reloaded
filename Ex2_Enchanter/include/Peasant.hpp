@@ -23,7 +23,7 @@ class                       Peasant
         void                setHp(int hp);
         void                setPower(int power);
 
-        bool                isOut(void);
+        virtual bool        isOut(void);
         int                 attack(void);
         int                 special(void);
         void                rest(void);

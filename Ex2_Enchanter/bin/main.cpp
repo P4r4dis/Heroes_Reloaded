@@ -1,15 +1,16 @@
 #include "../include/Peasant.hpp"
 #include "../include/Knight.hpp"
+#include "../include/Enchanter.hpp"
 
 
 int main(void)
 {
-    Knight knight("Arthur", 20);
+    Enchanter enchanter("Merlin", 20);
 
-    knight.attack();
-    knight.special();
-    knight.rest();
-    knight.special();
-    knight.damage(50);
+    enchanter.attack();
+    enchanter.special();
+    enchanter.rest();
+    enchanter.special();
+    enchanter.damage(50);
     return 0;
 }
