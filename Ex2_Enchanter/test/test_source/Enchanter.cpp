@@ -18,19 +18,22 @@ Enchanter::~Enchanter(void)
 
 int                 Enchanter::attack(void)
 {
-    if (!isOut())
+    if (getHp() > 0)
     {
         setPower(getPower() - ENCHANTER_ATK_COST_POWER);
         std::cout << getName() << " don't know how to fight." << std::endl;
         return ENCHANTER_ATK_DMG;
     }
     else
+    {
+        std::cout << getName() << " is out of combat." << std::endl; 
         return ENCHANTER_ATK_DMG;
+    }
 }
 
 int                 Enchanter::special(void)
 {
-    if (!isOut())
+    if (isOut() == false)
     {
         setPower(getPower() - ENCHANTER_SPC_COST_POWER);
         std::cout << getName() << " casts a fireball." << std::endl;
@@ -38,4 +41,26 @@ int                 Enchanter::special(void)
     }
     else
         return 0;
+}
+
+void                Enchanter::rest(void)
+{
+    setPower(getPower() + ENCHANTER_CURE_POWER);
+    std::cout << getName() << " meditates." << std::endl;
+}
+
+bool                Enchanter::isOut(void)
+{
+    if (getHp() <= 0)
+    {
+        std::cout << getName() << " is out of combat." << std::endl;
+        return true;
+    }
+    else if (getPower() < ENCHANTER_SPC_COST_POWER)
+    {
+        std::cout << getName() << " is out of power." << std::endl;
+        return true;      
+    }
+    else
+        return false;
 }

@@ -8,6 +8,9 @@
 
 #define ENCHANTER_SPC_COST_POWER 50
 #define ENCHANTER_SPC_DMG 99
+
+#define ENCHANTER_CURE_COST_POWER 0
+#define ENCHANTER_CURE_POWER 100
 class                   Enchanter : public Peasant
 {
     public:
@@ -17,5 +20,8 @@ class                   Enchanter : public Peasant
 
         int             attack(void);
         int             special(void);
+        void            rest(void);
+        virtual bool            isOut(void) override;
+
 };
 #endif //               !__ENCHANTER_HPP__

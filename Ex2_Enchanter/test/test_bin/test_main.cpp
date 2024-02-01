@@ -406,8 +406,9 @@ Test(Enchanter, test_Enchanter_attack, .init = redirect_all_stdout)
         cr_assert(enchanter.getPower() == 20);
         cr_assert(enchanter.attack() == 0);
         cr_assert(enchanter.getPower() == 20);
-        enchanter.setPower(0);
+        enchanter.setHp(0);
         cr_assert(enchanter.attack() == 0);
+        enchanter.isOut();
     }
 
     cr_assert_stdout_eq_str
@@ -415,7 +416,8 @@ Test(Enchanter, test_Enchanter_attack, .init = redirect_all_stdout)
         "Merlin goes for an adventure.\n"
         "Merlin learns magic from his spellbook.\n"
         "Merlin don't know how to fight.\n"
-        "Merlin is out of power.\n"
+        "Merlin is out of combat.\n"
+        "Merlin is out of combat.\n"
         "Merlin closes his spellbook.\n"
         "Merlin is back to his crops.\n"
     );
@@ -439,6 +441,40 @@ Test(Enchanter, test_Enchanter_special, .init = redirect_all_stdout)
         "Merlin learns magic from his spellbook.\n"
         "Merlin casts a fireball.\n"
         "Merlin is out of power.\n"
+        "Merlin closes his spellbook.\n"
+        "Merlin is back to his crops.\n"
+    );
+}
+
+Test(Enchanter, test_Enchanter_rest, .init = redirect_all_stdout)
+{
+    {
+        Enchanter enchanter("Merlin", 20);
+
+        cr_assert(enchanter.getPower() == 20);
+        cr_assert(enchanter.attack() == 0);
+        cr_assert(enchanter.getPower() == 20);
+        std::cerr << enchanter.getPower() << std::endl;
+
+        cr_assert(enchanter.special() == 0);
+        cr_assert(enchanter.getPower() == 20);
+        enchanter.rest();
+        cr_assert(enchanter.getPower() == 100);
+        cr_assert(enchanter.special() == 99);
+        cr_assert(enchanter.getPower() == 50);
+        enchanter.rest();
+        cr_assert(enchanter.getPower() == 100);
+    }
+
+    cr_assert_stdout_eq_str
+    (
+        "Merlin goes for an adventure.\n"
+        "Merlin learns magic from his spellbook.\n"
+        "Merlin don't know how to fight.\n"
+        "Merlin is out of power.\n"
+        "Merlin meditates.\n"
+        "Merlin casts a fireball.\n"
+        "Merlin meditates.\n"
         "Merlin closes his spellbook.\n"
         "Merlin is back to his crops.\n"
     );
