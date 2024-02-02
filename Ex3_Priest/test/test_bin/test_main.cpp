@@ -563,12 +563,22 @@ Test(Priest, test_Priest_class_implementation, .init = redirect_all_stdout)
     );
 }
 
-        // "Merlin goes for an adventure.\n"
-        // "Merlin learns magic from his spellbook.\n"
-        // "Arthur don't know how to fight.\n"
-        // "Arthur is out of power.\n"
-        // "Arthur meditates.\n"
-        // "Arthur casts a fireball.\n"
-        // "Arthur takes 50 damage.\n"
-        // "Arthur closes his spellbook.\n"
-        // "Arthur is back to his crops.\n"
+Test(Priest, test_Priest_attack, .init = redirect_all_stdout)
+{
+    {
+        Priest priest("Trichelieu", 20);
+
+        cr_assert(priest.attack() == 0);
+    }
+
+    cr_assert_stdout_eq_str
+    (
+        "Trichelieu goes for an adventure.\n"
+        "Trichelieu learns magic from his spellbook.\n"
+        "Trichelieu enters in the order.\n"
+        "Trichelieu don't know how to fight.\n"
+        "Trichelieu finds peace.\n"
+        "Trichelieu closes his spellbook.\n"
+        "Trichelieu is back to his crops.\n"
+    );
+}
