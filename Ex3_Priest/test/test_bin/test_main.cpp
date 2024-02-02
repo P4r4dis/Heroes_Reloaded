@@ -582,3 +582,29 @@ Test(Priest, test_Priest_attack, .init = redirect_all_stdout)
         "Trichelieu is back to his crops.\n"
     );
 }
+
+Test(Priest, test_Priest_special, .init = redirect_all_stdout)
+{
+    {
+        Priest priest("Trichelieu", 20);
+
+        cr_assert(priest.attack() == 0);
+        cr_assert(priest.special() == 0);
+        priest.setPower(100);
+        cr_assert(priest.getPower() == 100);
+        cr_assert(priest.special() == 99);
+    }
+
+    cr_assert_stdout_eq_str
+    (
+        "Trichelieu goes for an adventure.\n"
+        "Trichelieu learns magic from his spellbook.\n"
+        "Trichelieu enters in the order.\n"
+        "Trichelieu don't know how to fight.\n"
+        "Trichelieu is out of power.\n"
+        "Trichelieu casts a fireball.\n"
+        "Trichelieu finds peace.\n"
+        "Trichelieu closes his spellbook.\n"
+        "Trichelieu is back to his crops.\n"
+    );
+}
