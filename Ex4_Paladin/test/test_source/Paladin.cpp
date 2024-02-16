@@ -29,3 +29,8 @@ int             Paladin::special(void)
 {
     return Enchanter::special();
 }
+
+void            Paladin::rest(void)
+{
+    return Priest::rest();
+}
