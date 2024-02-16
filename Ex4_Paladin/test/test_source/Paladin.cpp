@@ -24,3 +24,8 @@ int             Paladin::attack(void)
 {
     return Knight::attack();
 }
+
+int             Paladin::special(void)
+{
+    return Enchanter::special();
+}

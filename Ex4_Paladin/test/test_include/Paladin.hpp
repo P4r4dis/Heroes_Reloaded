@@ -12,5 +12,6 @@ class                       Paladin :  virtual public Knight,  virtual public Pr
         ~Paladin(void);
         
         int                 attack(void);
+        int                 special(void);
 };
 #endif //                   !__PALADIN_HPP__
