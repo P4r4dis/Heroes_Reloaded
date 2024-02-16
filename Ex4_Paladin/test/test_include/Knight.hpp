@@ -10,16 +10,19 @@
 #define KNIGHT_SPC_DMG 50
 
 #define KNIGHT_CURE_POWER 50
+
+
 class                       Knight : virtual public Peasant
 {
     public:
         Knight(const std::string &name, int power);
         Knight(const Knight &obj);
         ~Knight(void);
+    
+        int attack(void);
+        int special(void);
+        void rest(void);
 
-        int                 attack(void);
-        int                 special(void);
-        void                rest(void);
-    private:
+private:
 };
 #endif //                   !__KNIGHT_HPP__

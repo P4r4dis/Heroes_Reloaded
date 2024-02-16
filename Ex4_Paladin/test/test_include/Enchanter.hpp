@@ -17,11 +17,10 @@ class                   Enchanter : virtual public Peasant
         Enchanter(const std::string &name, int power);
         Enchanter(const Enchanter &obj);
         ~Enchanter(void);
-
-        int             attack(void);
-        int             special(void);
-        void            rest(void);
-        virtual bool            isOut(void) override;
-
+    
+        int attack(void);
+        int special(void);
+        void rest(void);
+        virtual bool isOut(void) override; // virtual and override
 };
 #endif //               !__ENCHANTER_HPP__

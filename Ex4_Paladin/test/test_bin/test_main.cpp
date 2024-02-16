@@ -11,7 +11,8 @@
 #include "../test_include/Priest.hpp"
 #include "../test_include/Paladin.hpp"
 
-void    redirect_all_stdout(void) {
+void redirect_all_stdout(void)
+{
     cr_redirect_stdout();
     cr_redirect_stderr();
 }
@@ -41,22 +42,20 @@ Test(Peasant, test_Peasant_class_implementation, .init = redirect_all_stdout)
         cr_assert(peasant.getPower() == 0);
         peasant.setPower(42);
         cr_assert(peasant.getPower() == 42);
-        
+
         cr_assert(peasant.getName() == peasant2.getName());
         cr_assert(peasant.getHp() == peasant2.getHp());
         cr_assert(peasant.getPower() == peasant2.getPower());
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Gildas goes for an adventure.\n"
         "TEST goes for an adventure.\n"
         "TEST2 goes for an adventure.\n"
         "TEST2 is back to his crops.\n"
         "TEST is back to his crops.\n"
         "Gildas is back to his crops.\n"
-        "Gildas is back to his crops.\n"
-    );
+        "Gildas is back to his crops.\n");
 }
 
 Test(Peasant, test_Peasant_attack, .init = redirect_all_stdout)
@@ -74,17 +73,14 @@ Test(Peasant, test_Peasant_attack, .init = redirect_all_stdout)
         peasant.setHp(0);
         cr_assert(peasant.attack() == 0);
         cr_assert(peasant.getHp() == 0);
-
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Gildas goes for an adventure.\n"
         "Gildas tosses a stone.\n"
         "Gildas is out of power.\n"
         "Gildas is out of combat.\n"
-        "Gildas is back to his crops.\n"
-    );
+        "Gildas is back to his crops.\n");
 }
 
 Test(Peasant, test_Peasant_special, .init = redirect_all_stdout)
@@ -97,16 +93,13 @@ Test(Peasant, test_Peasant_special, .init = redirect_all_stdout)
         cr_assert(peasant.getPower() == 42);
         peasant.setPower(0);
         cr_assert(peasant.special() == 0);
-
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Gildas goes for an adventure.\n"
         "Gildas doesn't know any special move.\n"
         "Gildas is out of power.\n"
-        "Gildas is back to his crops.\n"
-    );
+        "Gildas is back to his crops.\n");
 }
 
 Test(Peasant, test_Peasant_rest, .init = redirect_all_stdout)
@@ -121,13 +114,11 @@ Test(Peasant, test_Peasant_rest, .init = redirect_all_stdout)
         cr_assert(peasant.getPower() == 100);
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Gildas goes for an adventure.\n"
         "Gildas takes a nap.\n"
         "Gildas takes a nap.\n"
-        "Gildas is back to his crops.\n"
-    );
+        "Gildas is back to his crops.\n");
 }
 
 Test(Peasant, test_Peasant_damage, .init = redirect_all_stdout)
@@ -142,15 +133,13 @@ Test(Peasant, test_Peasant_damage, .init = redirect_all_stdout)
         cr_assert(peasant.getHp() == 0);
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Gildas goes for an adventure.\n"
         "Gildas takes 50 damage.\n"
         "Gildas is out of combat.\n"
         "Gildas is out of combat.\n"
         "Gildas is out of combat.\n"
-        "Gildas is back to his crops.\n"
-    );
+        "Gildas is back to his crops.\n");
 }
 
 Test(Peasant, test_Peasant_mainFunction, .init = redirect_all_stdout)
@@ -165,15 +154,13 @@ Test(Peasant, test_Peasant_mainFunction, .init = redirect_all_stdout)
         cr_assert(peasant.getHp() == 0);
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Gildas goes for an adventure.\n"
         "Gildas takes 50 damage.\n"
         "Gildas is out of combat.\n"
         "Gildas is out of combat.\n"
         "Gildas is out of combat.\n"
-        "Gildas is back to his crops.\n"
-    );
+        "Gildas is back to his crops.\n");
 }
 
 Test(Knight, test_Knight_class_implementation, .init = redirect_all_stdout)
@@ -200,22 +187,20 @@ Test(Knight, test_Knight_class_implementation, .init = redirect_all_stdout)
         cr_assert(knight.getPower() == 0);
         knight.setPower(20);
         cr_assert(knight.getPower() == 20);
-        
+
         cr_assert(knight.getName() == knight2.getName());
         cr_assert(knight.getHp() == knight2.getHp());
         cr_assert(knight.getPower() == knight2.getPower());
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Arthur goes for an adventure.\n"
         "Arthur vows to protect the kingdom.\n"
         "Arthur goes for an adventure.\n"
         "Arthur takes off his armor.\n"
         "Arthur is back to his crops.\n"
         "Arthur takes off his armor.\n"
-        "Arthur is back to his crops.\n"
-    );
+        "Arthur is back to his crops.\n");
 }
 
 Test(Knight, test_Knight_attack, .init = redirect_all_stdout)
@@ -230,15 +215,13 @@ Test(Knight, test_Knight_attack, .init = redirect_all_stdout)
         cr_assert(knight.attack() == 0);
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Arthur goes for an adventure.\n"
         "Arthur vows to protect the kingdom.\n"
         "Arthur strikes with his sword.\n"
         "Arthur is out of power.\n"
         "Arthur takes off his armor.\n"
-        "Arthur is back to his crops.\n"
-    );
+        "Arthur is back to his crops.\n");
 }
 
 Test(Knight, test_Knight_special, .init = redirect_all_stdout)
@@ -253,15 +236,13 @@ Test(Knight, test_Knight_special, .init = redirect_all_stdout)
         cr_assert(knight.getPower() == 0);
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Arthur goes for an adventure.\n"
         "Arthur vows to protect the kingdom.\n"
         "Arthur impales his ennemy.\n"
         "Arthur is out of power.\n"
         "Arthur takes off his armor.\n"
-        "Arthur is back to his crops.\n"
-    );
+        "Arthur is back to his crops.\n");
 }
 
 Test(Knight, test_Knight_rest, .init = redirect_all_stdout)
@@ -284,8 +265,7 @@ Test(Knight, test_Knight_rest, .init = redirect_all_stdout)
         cr_assert(knight.getPower() == 100);
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Arthur goes for an adventure.\n"
         "Arthur vows to protect the kingdom.\n"
         "Arthur strikes with his sword.\n"
@@ -295,8 +275,7 @@ Test(Knight, test_Knight_rest, .init = redirect_all_stdout)
         "Arthur eats.\n"
         "Arthur eats.\n"
         "Arthur takes off his armor.\n"
-        "Arthur is back to his crops.\n"
-    );
+        "Arthur is back to his crops.\n");
 }
 
 Test(Knight, test_Knight_damage, .init = redirect_all_stdout)
@@ -317,8 +296,7 @@ Test(Knight, test_Knight_damage, .init = redirect_all_stdout)
         cr_assert(knight.getHp() == 50);
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Arthur goes for an adventure.\n"
         "Arthur vows to protect the kingdom.\n"
         "Arthur strikes with his sword.\n"
@@ -327,8 +305,7 @@ Test(Knight, test_Knight_damage, .init = redirect_all_stdout)
         "Arthur impales his ennemy.\n"
         "Arthur takes 50 damage.\n"
         "Arthur takes off his armor.\n"
-        "Arthur is back to his crops.\n"
-    );
+        "Arthur is back to his crops.\n");
 }
 
 Test(Knight, test_Knight_mainFunction, .init = redirect_all_stdout)
@@ -343,8 +320,7 @@ Test(Knight, test_Knight_mainFunction, .init = redirect_all_stdout)
         knight.damage(50);
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Arthur goes for an adventure.\n"
         "Arthur vows to protect the kingdom.\n"
         "Arthur strikes with his sword.\n"
@@ -353,8 +329,7 @@ Test(Knight, test_Knight_mainFunction, .init = redirect_all_stdout)
         "Arthur impales his ennemy.\n"
         "Arthur takes 50 damage.\n"
         "Arthur takes off his armor.\n"
-        "Arthur is back to his crops.\n"
-    );
+        "Arthur is back to his crops.\n");
 }
 
 Test(Enchanter, test_Enchanter_class_implementation, .init = redirect_all_stdout)
@@ -381,24 +356,21 @@ Test(Enchanter, test_Enchanter_class_implementation, .init = redirect_all_stdout
         cr_assert(enchanter.getPower() == 0);
         enchanter.setPower(20);
         cr_assert(enchanter.getPower() == 20);
-        
+
         cr_assert(enchanter.getName() == enchanter2.getName());
         cr_assert(enchanter.getHp() == enchanter2.getHp());
         cr_assert(enchanter.getPower() == enchanter2.getPower());
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Merlin goes for an adventure.\n"
         "Merlin learns magic from his spellbook.\n"
         "Merlin goes for an adventure.\n"
         "Merlin closes his spellbook.\n"
         "Merlin is back to his crops.\n"
         "Merlin closes his spellbook.\n"
-        "Merlin is back to his crops.\n"
-    );
+        "Merlin is back to his crops.\n");
 }
-
 
 Test(Enchanter, test_Enchanter_attack, .init = redirect_all_stdout)
 {
@@ -413,16 +385,14 @@ Test(Enchanter, test_Enchanter_attack, .init = redirect_all_stdout)
         enchanter.isOut();
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Merlin goes for an adventure.\n"
         "Merlin learns magic from his spellbook.\n"
         "Merlin don't know how to fight.\n"
         "Merlin is out of combat.\n"
         "Merlin is out of combat.\n"
         "Merlin closes his spellbook.\n"
-        "Merlin is back to his crops.\n"
-    );
+        "Merlin is back to his crops.\n");
 }
 
 Test(Enchanter, test_Enchanter_special, .init = redirect_all_stdout)
@@ -437,15 +407,13 @@ Test(Enchanter, test_Enchanter_special, .init = redirect_all_stdout)
         cr_assert(enchanter.getPower() == 0);
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Merlin goes for an adventure.\n"
         "Merlin learns magic from his spellbook.\n"
         "Merlin casts a fireball.\n"
         "Merlin is out of power.\n"
         "Merlin closes his spellbook.\n"
-        "Merlin is back to his crops.\n"
-    );
+        "Merlin is back to his crops.\n");
 }
 
 Test(Enchanter, test_Enchanter_rest, .init = redirect_all_stdout)
@@ -467,8 +435,7 @@ Test(Enchanter, test_Enchanter_rest, .init = redirect_all_stdout)
         cr_assert(enchanter.getPower() == 100);
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Merlin goes for an adventure.\n"
         "Merlin learns magic from his spellbook.\n"
         "Merlin don't know how to fight.\n"
@@ -477,8 +444,7 @@ Test(Enchanter, test_Enchanter_rest, .init = redirect_all_stdout)
         "Merlin casts a fireball.\n"
         "Merlin meditates.\n"
         "Merlin closes his spellbook.\n"
-        "Merlin is back to his crops.\n"
-    );
+        "Merlin is back to his crops.\n");
 }
 
 Test(Enchanter, test_Enchanter_main, .init = redirect_all_stdout)
@@ -503,8 +469,7 @@ Test(Enchanter, test_Enchanter_main, .init = redirect_all_stdout)
         cr_assert(enchanter.getHp() == 50);
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Merlin goes for an adventure.\n"
         "Merlin learns magic from his spellbook.\n"
         "Merlin don't know how to fight.\n"
@@ -513,10 +478,8 @@ Test(Enchanter, test_Enchanter_main, .init = redirect_all_stdout)
         "Merlin casts a fireball.\n"
         "Merlin takes 50 damage.\n"
         "Merlin closes his spellbook.\n"
-        "Merlin is back to his crops.\n"
-    );
+        "Merlin is back to his crops.\n");
 }
-
 
 Test(Priest, test_Priest_class_implementation, .init = redirect_all_stdout)
 {
@@ -542,14 +505,13 @@ Test(Priest, test_Priest_class_implementation, .init = redirect_all_stdout)
         cr_assert(priest.getPower() == 0);
         priest.setPower(20);
         cr_assert(priest.getPower() == 20);
-        
+
         cr_assert(priest.getName() == priest2.getName());
         cr_assert(priest.getHp() == priest2.getHp());
         cr_assert(priest.getPower() == priest2.getPower());
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Trichelieu goes for an adventure.\n"
         "Trichelieu learns magic from his spellbook.\n"
         "Trichelieu enters in the order.\n"
@@ -560,8 +522,7 @@ Test(Priest, test_Priest_class_implementation, .init = redirect_all_stdout)
         "Trichelieu is back to his crops.\n"
         "Trichelieu finds peace.\n"
         "Trichelieu closes his spellbook.\n"
-        "Trichelieu is back to his crops.\n"
-    );
+        "Trichelieu is back to his crops.\n");
 }
 
 Test(Priest, test_Priest_attack, .init = redirect_all_stdout)
@@ -572,16 +533,14 @@ Test(Priest, test_Priest_attack, .init = redirect_all_stdout)
         cr_assert(priest.attack() == 0);
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Trichelieu goes for an adventure.\n"
         "Trichelieu learns magic from his spellbook.\n"
         "Trichelieu enters in the order.\n"
         "Trichelieu don't know how to fight.\n"
         "Trichelieu finds peace.\n"
         "Trichelieu closes his spellbook.\n"
-        "Trichelieu is back to his crops.\n"
-    );
+        "Trichelieu is back to his crops.\n");
 }
 
 Test(Priest, test_Priest_special, .init = redirect_all_stdout)
@@ -596,8 +555,7 @@ Test(Priest, test_Priest_special, .init = redirect_all_stdout)
         cr_assert(priest.special() == 99);
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Trichelieu goes for an adventure.\n"
         "Trichelieu learns magic from his spellbook.\n"
         "Trichelieu enters in the order.\n"
@@ -606,10 +564,8 @@ Test(Priest, test_Priest_special, .init = redirect_all_stdout)
         "Trichelieu casts a fireball.\n"
         "Trichelieu finds peace.\n"
         "Trichelieu closes his spellbook.\n"
-        "Trichelieu is back to his crops.\n"
-    );
+        "Trichelieu is back to his crops.\n");
 }
-
 
 Test(Priest, test_Priest_rest, .init = redirect_all_stdout)
 {
@@ -623,11 +579,9 @@ Test(Priest, test_Priest_rest, .init = redirect_all_stdout)
         cr_assert(priest.getPower() == 100);
         priest.setHp(0);
         priest.rest();
-
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Trichelieu goes for an adventure.\n"
         "Trichelieu learns magic from his spellbook.\n"
         "Trichelieu enters in the order.\n"
@@ -637,8 +591,7 @@ Test(Priest, test_Priest_rest, .init = redirect_all_stdout)
         "Trichelieu is out of combat.\n"
         "Trichelieu finds peace.\n"
         "Trichelieu closes his spellbook.\n"
-        "Trichelieu is back to his crops.\n"
-    );
+        "Trichelieu is back to his crops.\n");
 }
 
 Test(Priest, test_Priest_damage, .init = redirect_all_stdout)
@@ -652,11 +605,9 @@ Test(Priest, test_Priest_damage, .init = redirect_all_stdout)
         cr_assert(priest.getHp() == 100);
         cr_assert(priest.getPower() == 100);
         priest.damage(50);
-
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Trichelieu goes for an adventure.\n"
         "Trichelieu learns magic from his spellbook.\n"
         "Trichelieu enters in the order.\n"
@@ -666,8 +617,7 @@ Test(Priest, test_Priest_damage, .init = redirect_all_stdout)
         "Trichelieu takes 50 damage.\n"
         "Trichelieu finds peace.\n"
         "Trichelieu closes his spellbook.\n"
-        "Trichelieu is back to his crops.\n"
-    );
+        "Trichelieu is back to his crops.\n");
 }
 
 Test(Priest, test_Priest_main, .init = redirect_all_stdout)
@@ -681,11 +631,9 @@ Test(Priest, test_Priest_main, .init = redirect_all_stdout)
         cr_assert(priest.getHp() == 100);
         cr_assert(priest.getPower() == 100);
         priest.damage(50);
-
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Trichelieu goes for an adventure.\n"
         "Trichelieu learns magic from his spellbook.\n"
         "Trichelieu enters in the order.\n"
@@ -695,8 +643,7 @@ Test(Priest, test_Priest_main, .init = redirect_all_stdout)
         "Trichelieu takes 50 damage.\n"
         "Trichelieu finds peace.\n"
         "Trichelieu closes his spellbook.\n"
-        "Trichelieu is back to his crops.\n"
-    );
+        "Trichelieu is back to his crops.\n");
 }
 
 Test(Paladin, test_Paladin_class_implementation, .init = redirect_all_stdout)
@@ -722,14 +669,13 @@ Test(Paladin, test_Paladin_class_implementation, .init = redirect_all_stdout)
         cr_assert(paladin.getPower() == 0);
         paladin.setPower(99);
         cr_assert(paladin.getPower() == 99);
-        
+
         cr_assert(paladin.getName() == paladin2.getName());
         cr_assert(paladin.getHp() == paladin2.getHp());
         cr_assert(paladin.getPower() == paladin2.getPower());
     }
 
-    cr_assert_stdout_eq_str
-    (
+    cr_assert_stdout_eq_str(
         "Uther goes for an adventure.\n"
         "Uther vows to protect the kingdom.\n"
         "Uther learns magic from his spellbook.\n"
@@ -744,6 +690,35 @@ Test(Paladin, test_Paladin_class_implementation, .init = redirect_all_stdout)
         "Uther closes his spellbook.\n"
         "Uther takes off his armor.\n"
         "Uther is back to his crops.\n"
+        "Uther is blessed.\n"
+        "Uther finds peace.\n"
+        "Uther closes his spellbook.\n"
+        "Uther takes off his armor.\n"
+        "Uther is back to his crops.\n");
+}
+
+Test(Paladin, test_Paladin_attack, .init = redirect_all_stdout)
+{
+    {
+        Paladin paladin("Uther", 99);
+
+
+        cr_assert(paladin.attack() == 20);
+        // cr_assert(paladin.special() == 0);
+        // paladin.setPower(100);
+        cr_assert(paladin.getPower() == 89);
+        // cr_assert(paladin.special() == 99);
+    }
+
+
+    cr_assert_stdout_eq_str
+    (
+        "Uther goes for an adventure.\n"
+        "Uther vows to protect the kingdom.\n"
+        "Uther learns magic from his spellbook.\n"
+        "Uther enters in the order.\n"
+        "Uther fights for the light.\n"
+        "Uther strikes with his sword.\n"
         "Uther is blessed.\n"
         "Uther finds peace.\n"
         "Uther closes his spellbook.\n"

@@ -11,27 +11,27 @@
 
 class                       Peasant
 {
-    public:    
-        Peasant(const std::string &name, int power);
-        Peasant(const Peasant &obj);
-        ~Peasant(void);
+public:
+    Peasant(const std::string &name, int power);
+    Peasant(const Peasant &obj);
+    ~Peasant(void);
 
-        const std::string   &getName() const;
-        int                 getHp(void) const;
-        int                 getPower(void) const;
+    const std::string &getName() const;
+    int getHp(void) const;
+    int getPower(void) const;
 
-        void                setHp(int hp);
-        void                setPower(int power);
+    void setHp(int hp);
+    void setPower(int power);
 
-        virtual bool                isOut(void);
-        int                 attack(void);
-        int                 special(void);
-        void                rest(void);
-        void                damage(int damage);
+    virtual bool isOut(void);
+    virtual int attack(void);
+    int special(void);
+    void rest(void);
+    void damage(int damage);
 
-    private:
-        std::string         _name;
-        int                 _hp;
-        int                 _power;
+private:
+    std::string _name;
+    int _hp;
+    int _power;
 };
 #endif //                   !__PEASANT_HPP__

@@ -4,11 +4,13 @@
 #include "Knight.hpp"
 #include "Priest.hpp"
 #include "Enchanter.hpp"
-class                       Paladin : public Knight, public Priest
+class                       Paladin :  virtual public Knight,  virtual public Priest
 {
     public:
         Paladin(const std::string &name, int power);
         Paladin(const Paladin &obj);
         ~Paladin(void);
+        
+        int                 attack(void);
 };
 #endif //                   !__PALADIN_HPP__
