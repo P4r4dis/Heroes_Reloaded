@@ -12,6 +12,7 @@ class                   ICharacter
     public:
 
         // virtual const std::string &getName() const = 0;
+        virtual int     attack(void) = 0;
     private:
 };
 
