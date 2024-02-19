@@ -55,15 +55,15 @@ EX4_SRC_TEST			=	$(EX4_TST_PATH)/$(NAME_EX4)_test.cpp
 TEST_NAME_EX4 			= 	test_$(NAME_EX4)
 
 #################################################
-# EX5_PATH 				= 	./Ex5_Factory2
-# EX5_SRC_PATH			=	./Ex5_Factory2/source
-# EX5_TST_PATH			=	./Ex5_Factory2/test
-# EX5_INC_PATH			=	./Ex5_Factory2/include
-# NAME_EX5				=	Ex5
-# # EX0_SRC					=	$(EX0_SRC_PATH)/.cpp
+EX5_PATH 				= 	./Ex5_ICharacter
+EX5_SRC_PATH			=	./Ex5_ICharacter/source
+EX5_TST_PATH			=	./Ex5_ICharacter/test
+EX5_INC_PATH			=	./Ex5_ICharacter/include
+NAME_EX5				=	Ex5
+# EX0_SRC					=	$(EX0_SRC_PATH)/.cpp
 
-# EX5_SRC_TEST			=	$(EX5_TST_PATH)/$(NAME_EX5)_test.cpp
-# TEST_NAME_EX5 			= 	test_$(NAME_EX5)
+EX5_SRC_TEST			=	$(EX5_TST_PATH)/$(NAME_EX5)_test.cpp
+TEST_NAME_EX5 			= 	test_$(NAME_EX5)
 
 #################################################
 # OBJS					=	$(SRCS:.cpp=.o)
@@ -78,7 +78,7 @@ clean					:
 							@$(MAKE) $(CLEAN) -C $(EX2_TST_PATH)
 							@$(MAKE) $(CLEAN) -C $(EX3_TST_PATH)
 							@$(MAKE) $(CLEAN) -C $(EX4_TST_PATH)
-# @$(MAKE) $(CLEAN) -C $(EX5_TST_PATH)
+							@$(MAKE) $(CLEAN) -C $(EX5_TST_PATH)
 
 fclean					:	clean
 							$(RM) $(NAME) $(TEST_NAME_EX0)
@@ -96,8 +96,8 @@ fclean					:	clean
 							@$(MAKE) $(FCLEAN) -C $(EX3_PATH)
 							@$(MAKE) $(FCLEAN) -C $(EX4_TST_PATH)
 							@$(MAKE) $(FCLEAN) -C $(EX4_PATH)
-# @$(MAKE) $(FCLEAN) -C $(EX5_TST_PATH)
-# @$(MAKE) $(FCLEAN) -C $(EX5_PATH)
+							@$(MAKE) $(FCLEAN) -C $(EX5_TST_PATH)
+							@$(MAKE) $(FCLEAN) -C $(EX5_PATH)
 
 re						: 	fclean all
 
@@ -120,6 +120,10 @@ Ex3 					: 	fclean
 Ex4 					: 	fclean
 							@$(MAKE) -C $(EX4_PATH)
 							$(EX4_PATH)/$(NAME_EX4)
+
+Ex5 					: 	fclean
+							@$(MAKE) -C $(EX5_PATH)
+							$(EX5_PATH)/$(NAME_EX5)
 
 test_run_Ex0			:	fclean
 							@$(MAKE) -C $(EX0_TST_PATH)
@@ -146,10 +150,10 @@ test_run_Ex4			:	fclean
 							$(EX4_TST_PATH)/$(TEST_NAME_EX4)
 							gcovr --exclude-unreachable-branches --exclude-throw-branches -r . --txt --html-details coverage.html
 
-# test_run_Ex5			:	fclean
-# 							@$(MAKE) -C $(EX5_TST_PATH)
-# 							$(EX5_TST_PATH)/$(TEST_NAME_EX5)
-# 							gcovr --exclude-unreachable-branches --exclude-throw-branches -r . --txt --html-details coverage.html
+test_run_Ex5			:	fclean
+							@$(MAKE) -C $(EX5_TST_PATH)
+							$(EX5_TST_PATH)/$(TEST_NAME_EX5)
+							gcovr --exclude-unreachable-branches --exclude-throw-branches -r . --txt --html-details coverage.html
 
 tests_run				:	fclean
 							@$(MAKE) test_run_Ex0
@@ -167,6 +171,9 @@ tests_run				:	fclean
 							@$(MAKE) test_run_Ex4
 							@echo "Press Enter to continue to the next test (Ex5)..."
 							@read dummy
+							@$(MAKE) test_run_Ex5
+							@echo "Press Enter to continue to the next test (Ex6)..."
+							@read dummy
 # @$(MAKE) tests_run_Ex5
  
 .PHONY					: 	all clean fclean re \
@@ -175,4 +182,5 @@ tests_run				:	fclean
 							Ex1 test_run_Ex1 \
 							Ex2 test_run_Ex2 \
 							Ex3 test_run_Ex3 \
-							Ex4 test_run_Ex4
+							Ex4 test_run_Ex4 \
+							Ex5 test_run_Ex5
