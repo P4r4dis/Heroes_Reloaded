@@ -1,6 +1,6 @@
 #include "../test_include/Priest.hpp"
 
-Priest::Priest(const std::string &name, int power)  : Peasant(name, power),
+Priest::Priest(const std::string &name, int power)  :   Peasant(name, power),
                                                         Enchanter(name, power)
 {
     std::cout << getName() << " enters in the order." << std::endl;

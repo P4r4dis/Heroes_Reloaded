@@ -86,7 +86,6 @@ fclean					:	clean
 							$(RM) $(NAME) $(TEST_NAME_EX2)
 							$(RM) $(NAME) $(TEST_NAME_EX3)
 							$(RM) $(NAME) $(TEST_NAME_EX4)
-# $(RM) $(NAME) $(TEST_NAME_EX5)
 							@$(MAKE) $(FCLEAN) -C $(EX0_TST_PATH)
 							@$(MAKE) $(FCLEAN) -C $(EX0_PATH)
 							@$(MAKE) $(FCLEAN) -C $(EX1_TST_PATH)
@@ -122,10 +121,6 @@ Ex4 					: 	fclean
 							@$(MAKE) -C $(EX4_PATH)
 							$(EX4_PATH)/$(NAME_EX4)
 
-# Ex5 					: 	fclean
-# 							@$(MAKE) -C $(EX5_PATH)
-# 							$(EX5_PATH)/$(NAME_EX5)
-
 test_run_Ex0			:	fclean
 							@$(MAKE) -C $(EX0_TST_PATH)
 							$(EX0_TST_PATH)/$(TEST_NAME_EX0)
@@ -157,19 +152,19 @@ test_run_Ex4			:	fclean
 # 							gcovr --exclude-unreachable-branches --exclude-throw-branches -r . --txt --html-details coverage.html
 
 tests_run				:	fclean
-							@$(MAKE) tests_run_Ex0
+							@$(MAKE) test_run_Ex0
 							@echo "Press Enter to continue to the next test (Ex1)..."
 							@read dummy
-							@$(MAKE) tests_run_Ex1
+							@$(MAKE) test_run_Ex1
 							@echo "Press Enter to continue to the next test (Ex2)..."
 							@read dummy
-							@$(MAKE) tests_run_Ex2
+							@$(MAKE) test_run_Ex2
 							@echo "Press Enter to continue to the next test (Ex3)..."
 							@read dummy
-							@$(MAKE) tests_run_Ex3
+							@$(MAKE) test_run_Ex3
 							@echo "Press Enter to continue to the next test (Ex4)..."
 							@read dummy
-							@$(MAKE) tests_run_Ex4
+							@$(MAKE) test_run_Ex4
 							@echo "Press Enter to continue to the next test (Ex5)..."
 							@read dummy
 # @$(MAKE) tests_run_Ex5

@@ -1,16 +1,13 @@
-#include "../include/Peasant.hpp"
-#include "../include/Knight.hpp"
-#include "../include/Enchanter.hpp"
-#include "../include/Priest.hpp"
 
+#include "../include/Paladin.hpp"
 
 int main(void)
 {
-    Priest priest("Trichelieu", 20);
+    Paladin paladin("Uther", 99);
 
-    priest.attack();
-    priest.special();
-    priest.rest();
-    priest.damage(50);
+    paladin.attack();
+    paladin.special();
+    paladin.rest();
+    paladin.damage(50);
     return 0;
 }

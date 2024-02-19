@@ -824,3 +824,39 @@ Test(Paladin, test_Paladin_damage, .init = redirect_all_stdout)
         "Uther is back to his crops.\n"
     );
 }
+
+Test(Paladin, test_Paladin_main, .init = redirect_all_stdout)
+{
+    {
+        Paladin paladin("Uther", 99);
+
+
+        cr_assert(paladin.attack() == 20);
+        cr_assert(paladin.special() == 99);
+        cr_assert(paladin.getPower() == 39);
+        paladin.rest();
+        cr_assert(paladin.getHp() == 100);
+        cr_assert(paladin.getPower() == 100);
+        paladin.damage(50);
+        cr_assert(paladin.getHp() == 50);
+    }
+
+
+    cr_assert_stdout_eq_str
+    (
+        "Uther goes for an adventure.\n"
+        "Uther vows to protect the kingdom.\n"
+        "Uther learns magic from his spellbook.\n"
+        "Uther enters in the order.\n"
+        "Uther fights for the light.\n"
+        "Uther strikes with his sword.\n"
+        "Uther casts a fireball.\n"
+        "Uther prays.\n"
+        "Uther takes 50 damage.\n"
+        "Uther is blessed.\n"
+        "Uther finds peace.\n"
+        "Uther closes his spellbook.\n"
+        "Uther takes off his armor.\n"
+        "Uther is back to his crops.\n"
+    );
+}

@@ -11,17 +11,16 @@
 
 #define ENCHANTER_CURE_COST_POWER 0
 #define ENCHANTER_CURE_POWER 100
-class                   Enchanter : public Peasant
+class                   Enchanter : virtual public Peasant
 {
     public:
         Enchanter(const std::string &name, int power);
         Enchanter(const Enchanter &obj);
         ~Enchanter(void);
-
-        int             attack(void);
-        int             special(void);
-        void            rest(void);
-        virtual bool            isOut(void) override;
-
+    
+        int attack(void);
+        int special(void);
+        void rest(void);
+        virtual bool isOut(void) override; // virtual and override
 };
 #endif //               !__ENCHANTER_HPP__
