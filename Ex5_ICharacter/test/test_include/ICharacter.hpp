@@ -2,17 +2,13 @@
     #define             __ICHARACTER_HPP__
 
 #include "Peasant.hpp"
-// #include "Knight.hpp"
-// #include "Enchanter.hpp"
-// #include "Priest.hpp"
-// #include "Paladin.hpp"
+
 
 class                   ICharacter
 {
     public:
-
-        // virtual const std::string &getName() const = 0;
         virtual int     attack(void) = 0;
+        virtual int     special(void) = 0;
     private:
 };
 

@@ -95,12 +95,17 @@ Test(Peasant, test_Peasant_special, .init = redirect_all_stdout)
         cr_assert(peasant.getPower() == 42);
         peasant.setPower(0);
         cr_assert(peasant.special() == 0);
+        peasant.setHp(0);
+        cr_assert(peasant.special() == 0);
+
+
     }
 
     cr_assert_stdout_eq_str(
         "Gildas goes for an adventure.\n"
         "Gildas doesn't know any special move.\n"
         "Gildas is out of power.\n"
+        "Gildas is out of combat.\n"
         "Gildas is back to his crops.\n");
 }
 
@@ -112,14 +117,15 @@ Test(Peasant, test_Peasant_rest, .init = redirect_all_stdout)
         cr_assert(peasant.getPower() == 42);
         peasant.rest();
         cr_assert(peasant.getPower() == 72);
+        peasant.setHp(0);
         peasant.rest();
-        cr_assert(peasant.getPower() == 100);
+        cr_assert(peasant.getPower() == 72);
     }
 
     cr_assert_stdout_eq_str(
         "Gildas goes for an adventure.\n"
         "Gildas takes a nap.\n"
-        "Gildas takes a nap.\n"
+        "Gildas is out of combat.\n"
         "Gildas is back to his crops.\n");
 }
 
@@ -152,7 +158,7 @@ Test(Peasant, test_Peasant_mainFunction, .init = redirect_all_stdout)
         cr_assert(peasant.getHp() == 50);
         peasant.damage(100);
         cr_assert(peasant.getHp() == 0);
-        peasant.damage(100);
+        peasant.damage(20);
         cr_assert(peasant.getHp() == 0);
     }
 
@@ -215,6 +221,8 @@ Test(Knight, test_Knight_attack, .init = redirect_all_stdout)
         cr_assert(knight.getPower() == 10);
         knight.setPower(0);
         cr_assert(knight.attack() == 0);
+        knight.setHp(0);
+        cr_assert(knight.attack() == 0);
     }
 
     cr_assert_stdout_eq_str(
@@ -222,6 +230,7 @@ Test(Knight, test_Knight_attack, .init = redirect_all_stdout)
         "Arthur vows to protect the kingdom.\n"
         "Arthur strikes with his sword.\n"
         "Arthur is out of power.\n"
+        "Arthur is out of combat.\n"
         "Arthur takes off his armor.\n"
         "Arthur is back to his crops.\n");
 }
@@ -236,6 +245,8 @@ Test(Knight, test_Knight_special, .init = redirect_all_stdout)
         cr_assert(knight.getPower() == 0);
         cr_assert(knight.special() == 0);
         cr_assert(knight.getPower() == 0);
+        knight.setHp(0);
+        cr_assert(knight.special() == 0);
     }
 
     cr_assert_stdout_eq_str(
@@ -243,6 +254,7 @@ Test(Knight, test_Knight_special, .init = redirect_all_stdout)
         "Arthur vows to protect the kingdom.\n"
         "Arthur impales his ennemy.\n"
         "Arthur is out of power.\n"
+        "Arthur is out of combat.\n"
         "Arthur takes off his armor.\n"
         "Arthur is back to his crops.\n");
 }
@@ -265,6 +277,8 @@ Test(Knight, test_Knight_rest, .init = redirect_all_stdout)
         cr_assert(knight.getPower() == 80);
         knight.rest();
         cr_assert(knight.getPower() == 100);
+        knight.setHp(0);
+        knight.rest();
     }
 
     cr_assert_stdout_eq_str(
@@ -276,6 +290,7 @@ Test(Knight, test_Knight_rest, .init = redirect_all_stdout)
         "Arthur impales his ennemy.\n"
         "Arthur eats.\n"
         "Arthur eats.\n"
+        "Arthur is out of combat.\n"
         "Arthur takes off his armor.\n"
         "Arthur is back to his crops.\n");
 }
@@ -384,7 +399,7 @@ Test(Enchanter, test_Enchanter_attack, .init = redirect_all_stdout)
         cr_assert(enchanter.getPower() == 20);
         enchanter.setHp(0);
         cr_assert(enchanter.attack() == 0);
-        enchanter.isOut();
+        enchanter.isOutForAtk();
     }
 
     cr_assert_stdout_eq_str(
@@ -407,6 +422,9 @@ Test(Enchanter, test_Enchanter_special, .init = redirect_all_stdout)
         cr_assert(enchanter.getPower() == 0);
         cr_assert(enchanter.special() == 0);
         cr_assert(enchanter.getPower() == 0);
+        enchanter.setHp(0);
+        cr_assert(enchanter.special() == 0);
+
     }
 
     cr_assert_stdout_eq_str(
@@ -414,6 +432,7 @@ Test(Enchanter, test_Enchanter_special, .init = redirect_all_stdout)
         "Merlin learns magic from his spellbook.\n"
         "Merlin casts a fireball.\n"
         "Merlin is out of power.\n"
+        "Merlin is out of combat.\n"
         "Merlin closes his spellbook.\n"
         "Merlin is back to his crops.\n");
 }
@@ -704,12 +723,8 @@ Test(Paladin, test_Paladin_attack, .init = redirect_all_stdout)
     {
         Paladin paladin("Uther", 99);
 
-
         cr_assert(paladin.attack() == 20);
-        // cr_assert(paladin.special() == 0);
-        // paladin.setPower(100);
         cr_assert(paladin.getPower() == 89);
-        // cr_assert(paladin.special() == 99);
     }
 
 
@@ -932,5 +947,85 @@ Test(ICharacter, test_ICharacter_attack, .init = redirect_all_stdout)
         "Uther enters in the order.\n"
         "Uther fights for the light.\n"
         "Gildas tosses a stone.\n"
+    );
+}
+
+Test(ICharacter, test_ICharacter_special, .init = redirect_all_stdout)
+{
+    {
+        ICharacter  *peasant = new Peasant("Gildas", 42);
+        ICharacter  *knight = new Knight("Arthur", 20);
+        ICharacter  *enchanter = new Enchanter("Merlin", 20);
+        ICharacter  *priest = new Priest("Trichelieu", 20);
+        ICharacter  *paladin = new Paladin("Uther", 99);
+
+        cr_assert(peasant != nullptr);
+        cr_assert(knight != nullptr);
+        cr_assert(enchanter != nullptr);
+        cr_assert(priest != nullptr);
+        cr_assert(paladin != nullptr);
+
+        cr_assert(peasant->attack() == 5);
+        cr_assert(knight->special() == 0);
+
+    }
+
+    cr_assert_stdout_eq_str
+    (
+        "Gildas goes for an adventure.\n"
+        "Arthur goes for an adventure.\n"
+        "Arthur vows to protect the kingdom.\n"
+        "Merlin goes for an adventure.\n"
+        "Merlin learns magic from his spellbook.\n"
+        "Trichelieu goes for an adventure.\n"
+        "Trichelieu learns magic from his spellbook.\n"
+        "Trichelieu enters in the order.\n"
+        "Uther goes for an adventure.\n"
+        "Uther vows to protect the kingdom.\n"
+        "Uther learns magic from his spellbook.\n"
+        "Uther enters in the order.\n"
+        "Uther fights for the light.\n"
+        "Gildas tosses a stone.\n"
+        "Arthur is out of power.\n"
+    );
+}
+
+Test(ICharacter, test_ICharacter_rest, .init = redirect_all_stdout)
+{
+    {
+        ICharacter  *peasant = new Peasant("Gildas", 42);
+        ICharacter  *knight = new Knight("Arthur", 20);
+        ICharacter  *enchanter = new Enchanter("Merlin", 20);
+        ICharacter  *priest = new Priest("Trichelieu", 20);
+        ICharacter  *paladin = new Paladin("Uther", 99);
+
+        cr_assert(peasant != nullptr);
+        cr_assert(knight != nullptr);
+        cr_assert(enchanter != nullptr);
+        cr_assert(priest != nullptr);
+        cr_assert(paladin != nullptr);
+
+        cr_assert(peasant->attack() == 5);
+        cr_assert(knight->special() == 0);
+
+    }
+
+    cr_assert_stdout_eq_str
+    (
+        "Gildas goes for an adventure.\n"
+        "Arthur goes for an adventure.\n"
+        "Arthur vows to protect the kingdom.\n"
+        "Merlin goes for an adventure.\n"
+        "Merlin learns magic from his spellbook.\n"
+        "Trichelieu goes for an adventure.\n"
+        "Trichelieu learns magic from his spellbook.\n"
+        "Trichelieu enters in the order.\n"
+        "Uther goes for an adventure.\n"
+        "Uther vows to protect the kingdom.\n"
+        "Uther learns magic from his spellbook.\n"
+        "Uther enters in the order.\n"
+        "Uther fights for the light.\n"
+        "Gildas tosses a stone.\n"
+        "Arthur is out of power.\n"
     );
 }

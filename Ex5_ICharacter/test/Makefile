@@ -7,7 +7,8 @@ TEST_SRC      = $(TEST_SRC_PATH)/Peasant.cpp \
 				$(TEST_SRC_PATH)/Knight.cpp \
 				$(TEST_SRC_PATH)/Enchanter.cpp \
 				$(TEST_SRC_PATH)/Priest.cpp \
-				$(TEST_SRC_PATH)/Paladin.cpp
+				$(TEST_SRC_PATH)/Paladin.cpp \
+				$(TEST_SRC_PATH)/ICharacter.cpp
 NAME          = test_Ex5
 #############################################
 
