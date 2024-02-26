@@ -13,6 +13,7 @@
 #include "../test_include/ICharacter.hpp"
 #include "../test_include/PoisonPotion.hpp"
 #include "../test_include/PowerPotion.hpp"
+#include "../test_include/HealthPotion.hpp"
 
 void redirect_all_stdout(void)
 {
@@ -1238,6 +1239,31 @@ Test(PowerPotion, Test_PowerPotion_implementation, .init = redirect_all_stdout)
 
         cr_assert(poison_potion.getPoisonDamage() == 50);
         cr_assert(power_potion.getPowerCure() == 50);
+        std::cout   << peasant->getName() << ": " << peasant->getHp()
+                    << "HP, " << peasant->getPower() << " PP." << std::endl;
+        
+        delete peasant;
+    }
+
+    cr_assert_stdout_eq_str
+    (
+        "Gildas goes for an adventure.\n"
+        "Gildas: 100HP, 42 PP.\n"
+        "Gildas is back to his crops.\n"
+    );
+}
+
+Test(HealthPotion, Test_HealthPotion_implementation, .init = redirect_all_stdout)
+{
+    {
+        ICharacter      *peasant = new Peasant("Gildas", 42);
+        PoisonPotion    poison_potion;
+        PowerPotion     power_potion;
+        HealthPotion    health_potion;
+
+        cr_assert(poison_potion.getPoisonDamage() == 50);
+        cr_assert(power_potion.getPowerCure() == 50);
+        cr_assert(health_potion.getHpCure() == 50);
         std::cout   << peasant->getName() << ": " << peasant->getHp()
                     << "HP, " << peasant->getPower() << " PP." << std::endl;
         

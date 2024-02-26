@@ -10,7 +10,8 @@ TEST_SRC      = $(TEST_SRC_PATH)/Peasant.cpp \
 				$(TEST_SRC_PATH)/Paladin.cpp \
 				$(TEST_SRC_PATH)/ICharacter.cpp \
 				$(TEST_SRC_PATH)/PoisonPotion.cpp \
-				$(TEST_SRC_PATH)/PowerPotion.cpp 
+				$(TEST_SRC_PATH)/PowerPotion.cpp \
+				$(TEST_SRC_PATH)/HealthPotion.cpp
 NAME          = test_Ex6
 #############################################
 
