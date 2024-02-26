@@ -8,7 +8,7 @@
 
 #define PRIEST_CURE_COST_POWER 0
 #define PRIEST_CURE 100
-class                   Priest : virtual public Enchanter
+class                   Priest : public Enchanter
 {
     public:
         Priest(const std::string &name, int power);

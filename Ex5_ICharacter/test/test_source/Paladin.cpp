@@ -2,7 +2,6 @@
 
 Paladin::Paladin(const std::string &name, int power) : Peasant(name, power),
                                                        Knight(name, power),
-                                                       Enchanter(name, power),
                                                        Priest(name, power)
 {
     std::cout << getName() << " fights for the light." << std::endl;
@@ -10,7 +9,6 @@ Paladin::Paladin(const std::string &name, int power) : Peasant(name, power),
 
 Paladin::Paladin(const Paladin &obj) : Peasant(obj.getName(), obj.getPower()),
                                        Knight(obj.getName(), obj.getPower()),
-                                       Enchanter(obj.getName(), obj.getPower()),
                                        Priest(obj.getName(), obj.getPower())
 {
 }
