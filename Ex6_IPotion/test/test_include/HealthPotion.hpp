@@ -2,8 +2,8 @@
     #define __HEALTHPOTION_HPP__
 
     #define HEALTH_CURE 50
-    #include "Peasant.hpp"
-    class HealthPotion
+    #include "IPotion.hpp"
+    class HealthPotion : virtual public IPotion
     {
     private:
         /* data */
@@ -11,6 +11,6 @@
         HealthPotion(void);
         ~HealthPotion();
 
-        int getHpCure(void) const;
+        int getValuePotion(void) const;
     };
 #endif //   !__HEALTHPOTION_HPP__

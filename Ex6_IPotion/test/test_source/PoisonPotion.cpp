@@ -8,8 +8,7 @@ PoisonPotion::~PoisonPotion()
 {
 }
     
-int    PoisonPotion::getPoisonDamage(void) const
+int    PoisonPotion::getValuePotion(void) const
 {
     return POISON_DAMAGE;
 }
-    

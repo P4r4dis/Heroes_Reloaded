@@ -2,8 +2,9 @@
     #define __POWERPOTION_HPP__
 
     #define POWER_CURE 50
-    #include "Peasant.hpp"
-    class PowerPotion
+
+    #include "IPotion.hpp"
+    class PowerPotion : virtual public IPotion
     {
     private:
         /* data */
@@ -11,6 +12,6 @@
         PowerPotion(void);
         ~PowerPotion();
 
-        int getPowerCure(void) const;
+        int getValuePotion(void) const;
     };
 #endif //   !__POWERPOTION_HPP__

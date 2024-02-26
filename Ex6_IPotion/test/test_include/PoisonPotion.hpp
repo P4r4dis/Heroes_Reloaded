@@ -2,8 +2,8 @@
     #define __POISONPOTION_HPP__
 
     #define POISON_DAMAGE 50
-    #include "Peasant.hpp"
-    class PoisonPotion
+    #include "IPotion.hpp"
+    class PoisonPotion :  virtual public IPotion
     {
     private:
         /* data */
@@ -11,6 +11,6 @@
         PoisonPotion(void);
         ~PoisonPotion();
 
-        int getPoisonDamage(void) const;
+        int getValuePotion(void) const;
     };
 #endif //   !__POISONPOTION_HPP__

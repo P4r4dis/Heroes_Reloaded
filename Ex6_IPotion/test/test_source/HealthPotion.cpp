@@ -8,8 +8,7 @@ HealthPotion::~HealthPotion()
 {
 }
     
-int    HealthPotion::getHpCure(void) const
+int    HealthPotion::getValuePotion(void) const
 {
     return HEALTH_CURE;
 }
-    

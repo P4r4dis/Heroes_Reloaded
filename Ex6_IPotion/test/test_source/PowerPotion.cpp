@@ -8,8 +8,7 @@ PowerPotion::~PowerPotion()
 {
 }
     
-int    PowerPotion::getPowerCure(void) const
+int    PowerPotion::getValuePotion(void) const
 {
     return POWER_CURE;
 }
-    
