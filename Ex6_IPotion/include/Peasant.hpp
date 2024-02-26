@@ -38,6 +38,11 @@ class                       Peasant : public ICharacter {
         void                    rest(void);
 
         void                    damage(int damage);
+
+        void                    drink(const PoisonPotion& potion);
+        void                    drink(const PowerPotion& potion);
+        void                    drink(const HealthPotion& potion);
+        void                    drink(const IPotion& potion);
     private:
         std::string             _name;
         int                     _hp;

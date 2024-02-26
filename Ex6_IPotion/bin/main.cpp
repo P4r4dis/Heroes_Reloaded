@@ -9,27 +9,22 @@
 
 int main(void)
 {
-    ICharacter  *peasant = new Peasant("Gildas", 42);
-    ICharacter  *knight = new Knight("Arthur", 20);
-    ICharacter  *enchanter = new Enchanter("Merlin", 20);
-    ICharacter  *priest = new Priest("Trichelieu", 20);
-    ICharacter  *paladin = new Paladin("Uther", 99);
+    ICharacter      *peasant = new Peasant("Gildas", 42);
+    PoisonPotion    poison_potion;
+    PowerPotion     power_potion;
+    HealthPotion    health_potion;
+    IPotion&        potion = health_potion;
 
-    peasant->attack();
-    knight->special();
-    enchanter->rest();
-    enchanter->getPower();
-    priest->damage(21);
-
-    std::cout   << paladin->getName() << ": "
-                << paladin->getHp() << " health points, "
-                << paladin->getPower() << " power points."
-                << std::endl;
+    std::cout   << peasant->getName() << ": " << peasant->getHp()
+                << "HP, " << peasant->getPower() << " PP." << std::endl;
+    peasant->drink(poison_potion);
+    std::cout   << peasant->getName() << ": " << peasant->getHp()
+                << "HP, " << peasant->getPower() << " PP." << std::endl;   
+    peasant->drink(potion);
+    std::cout   << peasant->getName() << ": " << peasant->getHp()
+                << "HP, " << peasant->getPower() << " PP." << std::endl;
 
     delete peasant;
-    delete knight;
-    delete enchanter;
-    delete priest;
-    delete paladin;
+    
     return 0;
 }

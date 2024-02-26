@@ -3,6 +3,10 @@
 
 #include <iostream>
 
+#include "PoisonPotion.hpp"
+#include "PowerPotion.hpp"
+#include "HealthPotion.hpp"
+#include "IPotion.hpp"
 class                               ICharacter
 {
     public:
@@ -18,6 +22,11 @@ class                               ICharacter
         virtual int                 getPower(void) const = 0;
         virtual int                 getHp(void) const = 0;
         virtual const std::string   &getName() const = 0;
+        
+        virtual void                drink(const PoisonPotion& potion) = 0;
+        virtual void                drink(const PowerPotion& potion) = 0;
+        virtual void                drink(const HealthPotion& potion) = 0;
+        virtual void                drink(const IPotion& potion) = 0;
 };
 
 #endif //                           !__ICHARACTER_HPP__
