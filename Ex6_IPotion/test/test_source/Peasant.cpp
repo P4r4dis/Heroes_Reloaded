@@ -148,3 +148,9 @@ void                    Peasant::damage(int damage)
         std::cout << _name << " is out of combat." << std::endl;
 
 }
+
+void                    Peasant::drink(const PoisonPotion& potion)
+{
+    setHp(getHp() - potion.getValuePotion());
+    std::cout << getName() << " has been poisoned." << std::endl;
+}

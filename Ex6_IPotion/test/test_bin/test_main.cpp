@@ -1319,7 +1319,13 @@ Test(Peasant, Test_drink_poison, .init = redirect_all_stdout)
         cr_assert(health_potion.getValuePotion() == 50);
         std::cout   << peasant->getName() << ": " << peasant->getHp()
                     << "HP, " << peasant->getPower() << " PP." << std::endl;
-        
+
+        cr_assert(peasant->getHp() == 100);         
+        peasant->drink(poison_potion);
+        cr_assert(peasant->getHp() == 50);
+        std::cout   << peasant->getName() << ": " << peasant->getHp()
+                    << "HP, " << peasant->getPower() << " PP." << std::endl;
+
         delete peasant;
     }
 
@@ -1327,6 +1333,8 @@ Test(Peasant, Test_drink_poison, .init = redirect_all_stdout)
     (
         "Gildas goes for an adventure.\n"
         "Gildas: 100HP, 42 PP.\n"
+        "Gildas has been poisoned.\n"
+        "Gildas: 50HP, 42 PP.\n"
         "Gildas is back to his crops.\n"
     );
 }
