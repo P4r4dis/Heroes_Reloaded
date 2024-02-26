@@ -11,7 +11,10 @@ class                   ICharacter
         virtual int     special(void) = 0;
         virtual void    rest(void) = 0;
 
+        virtual void    damage(int damage) = 0;
+
         virtual int     getPower(void) const = 0;
+        virtual int     getHp(void) const = 0;
     private:
 };
 
