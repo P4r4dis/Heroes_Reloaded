@@ -1338,3 +1338,43 @@ Test(Peasant, Test_drink_poison, .init = redirect_all_stdout)
         "Gildas is back to his crops.\n"
     );
 }
+
+Test(Peasant, Test_drink_power, .init = redirect_all_stdout)
+{
+    {
+        ICharacter      *peasant = new Peasant("Gildas", 42);
+        PoisonPotion    poison_potion;
+        PowerPotion     power_potion;
+        HealthPotion    health_potion;
+
+        cr_assert(poison_potion.getValuePotion() == 50);
+        cr_assert(power_potion.getValuePotion() == 50);
+        cr_assert(health_potion.getValuePotion() == 50);
+        std::cout   << peasant->getName() << ": " << peasant->getHp()
+                    << "HP, " << peasant->getPower() << " PP." << std::endl;
+
+        cr_assert(peasant->getHp() == 100);         
+        peasant->drink(poison_potion);
+        cr_assert(peasant->getHp() == 50);
+        std::cout   << peasant->getName() << ": " << peasant->getHp()
+                    << "HP, " << peasant->getPower() << " PP." << std::endl;
+
+        cr_assert(peasant->getPower() == 42);         
+        peasant->drink(power_potion);
+        cr_assert(peasant->getPower() == 92);
+        std::cout   << peasant->getName() << ": " << peasant->getHp()
+                    << "HP, " << peasant->getPower() << " PP." << std::endl;
+        delete peasant;
+    }
+
+    cr_assert_stdout_eq_str
+    (
+        "Gildas goes for an adventure.\n"
+        "Gildas: 100HP, 42 PP.\n"
+        "Gildas has been poisoned.\n"
+        "Gildas: 50HP, 42 PP.\n"
+        "Gildas power is restored.\n"
+        "Gildas: 50HP, 92 PP.\n"
+        "Gildas is back to his crops.\n"
+    );
+}

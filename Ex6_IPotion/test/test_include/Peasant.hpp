@@ -16,6 +16,7 @@
 #include <iostream>
 #include "ICharacter.hpp"
 #include "PoisonPotion.hpp"
+#include "PowerPotion.hpp"
 
 class                       Peasant : public ICharacter {
     public:
@@ -41,6 +42,7 @@ class                       Peasant : public ICharacter {
         void                    damage(int damage);
 
         void                    drink(const PoisonPotion& potion);
+        void                    drink(const PowerPotion& potion);
     private:
         std::string             _name;
         int                     _hp;
