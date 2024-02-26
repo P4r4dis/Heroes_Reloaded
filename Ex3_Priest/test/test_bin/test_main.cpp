@@ -669,7 +669,7 @@ Test(Priest, test_Priest_damage, .init = redirect_all_stdout)
     );
 }
 
-Test(Priest, test_Priest_damage, .init = redirect_all_stdout)
+Test(Priest, test_Pries_mainFunction, .init = redirect_all_stdout)
 {
     {
         Priest priest("Trichelieu", 20);
