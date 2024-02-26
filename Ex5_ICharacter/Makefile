@@ -19,6 +19,7 @@ SRCS		=	$(SRC_PATH)/Peasant.cpp \
 				$(SRC_PATH)/Enchanter.cpp \
 				$(SRC_PATH)/Priest.cpp \
 				$(SRC_PATH)/Paladin.cpp \
+				$(SRC_PATH)/ICharacter.cpp \
 				$(BIN_PATH)/main.cpp
 
 SRC_TEST	=	$(TST_PATH)/$(NAME)_test.cpp

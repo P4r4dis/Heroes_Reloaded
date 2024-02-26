@@ -14,32 +14,80 @@ Knight::~Knight(void)
     std::cout << getName() << " takes off his armor." << std::endl;
 }
 
-int             Knight::attack(void)
+
+bool                    Knight::isOutForAtk(void)
 {
-    if (!isOut())
+    if (getHp() <= 0)
+    {
+        std::cout << getName() << " is out of combat." << std::endl;
+        return true;
+    }
+    else if (getPower() < KNIGHT_ATK_COST_POWER)
+    {
+        std::cout << getName() << " is out of power." << std::endl;
+        return true;
+    }
+
+    return false;
+}
+
+bool                    Knight::isOutForSpc(void)
+{
+    if (getHp() <= 0)
+    {
+        std::cout << getName() << " is out of combat." << std::endl;
+        return true;
+    }
+    else if (getPower() == 0 || getPower() < KNIGHT_SPC_COST_POWER)
+    {
+        std::cout << getName() << " is out of power." << std::endl;
+        return true;
+    }
+
+    return false;
+}
+
+bool                    Knight::isOutForRest(void)
+{
+    if (getHp() <= 0)
+    {
+        std::cout << getName() << " is out of combat." << std::endl;
+        return true;
+    }
+
+    return false;
+}
+
+int                     Knight::attack(void)
+{
+    if (isOutForAtk() == false)
     {
         setPower(getPower() - KNIGHT_ATK_COST_POWER);
         std::cout << getName() << " strikes with his sword." << std::endl;
-        return KNIGHT_ATK_DMG;
+        return KNIGHT_ATK_DAMAGE;
     }
     else
         return 0;
 }
 
-int             Knight::special(void)
+int                     Knight::special(void)
 {
-    if (!isOut())
+    if (isOutForSpc() == false)
     {
         setPower(getPower() - KNIGHT_SPC_COST_POWER);
         std::cout << getName() << " impales his ennemy." << std::endl;
-        return KNIGHT_SPC_DMG;
+        return KNIGHT_SPC_DAMAGE;
     }
     else
         return 0;
 }
 
-void            Knight::rest(void)
+void                    Knight::rest(void)
 {
-    setPower(getPower() + KNIGHT_CURE_POWER);
-    std::cout << getName() << " eats." << std::endl;
+    if (isOutForRest() == false)
+    {
+        setPower(getPower() + KNIGHT_CURE_POWER);
+        setHp(getHp() + 0);
+        std::cout << getName() << " eats." << std::endl;
+    }
 }

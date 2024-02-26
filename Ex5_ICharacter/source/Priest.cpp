@@ -16,14 +16,12 @@ Priest::~Priest(void)
     std::cout << getName() << " finds peace." << std::endl;
 }
 
-void                Priest::rest(void)
+void                    Priest::rest(void)
 {
-    if (getHp() <= 0)
-        std::cout << getName() << " is out of combat." << std::endl;
-    else
+    if (isOutForRest() == false)
     {
-        setHp(getHp() + PRIEST_BASE_CURE_HP);
-        setPower(getPower() + PRIEST_BASE_CURE_POWER);
+        setPower(getPower() + PRIEST_CURE);
+        setHp(getHp() + PRIEST_CURE);
         std::cout << getName() << " prays." << std::endl;
     }
 }

@@ -1,10 +1,10 @@
 #include "../include/Peasant.hpp"
 
 Peasant::Peasant(const std::string &name, int power)    :   _name(name),
-                                                            _hp(BASE_HP)
+                                                            _hp(PEASANT_HP)
 {
-    if (power > BASE_POWER)
-        _power = BASE_POWER;
+    if (power > PEASANT_POWER)
+        _power = PEASANT_POWER;
     else if (power < 0)
         _power = 0;
     else
@@ -38,8 +38,8 @@ int                     Peasant::getPower(void) const
 
 void                    Peasant::setHp(int hp)
 {
-    if (hp > BASE_HP)
-        _hp = BASE_HP;
+    if (hp > PEASANT_HP)
+        _hp = PEASANT_HP;
     else if (hp < 0)
         _hp = 0;
     else
@@ -48,37 +48,64 @@ void                    Peasant::setHp(int hp)
 
 void                    Peasant::setPower(int power)
 {
-    if (power > BASE_POWER)
-        _power = BASE_POWER;
+    if (power > PEASANT_POWER)
+        _power = PEASANT_POWER;
     else if (power < 0)
         _power = 0;
     else
         _power = power;
 }
 
-bool                    Peasant::isOut(void)
+bool                    Peasant::isOutForAtk(void)
 {
     if (_hp <= 0)
     {
         std::cout << _name << " is out of combat." << std::endl;
         return true;
     }
-    else if (_power <= BASE_COST_POWER)
+    else if (_power < PEASANT_ATK_COST_POWER)
     {
         std::cout << _name << " is out of power." << std::endl;
-        return true;      
+        return true;
     }
-    else
-        return false;
+
+    return false;
+}
+
+bool                    Peasant::isOutForSpc(void)
+{
+    if (_hp <= 0)
+    {
+        std::cout << _name << " is out of combat." << std::endl;
+        return true;
+    }
+    else if (_power == 0 || _power < PEASANT_SPC_COST_POWER)
+    {
+        std::cout << _name << " is out of power." << std::endl;
+        return true;
+    }
+
+    return false;
+}
+
+bool                    Peasant::isOutForRest(void)
+{
+    if (_hp <= 0)
+    {
+        std::cout << _name << " is out of combat." << std::endl;
+        return true;
+    }
+
+    return false;
 }
 
 int                     Peasant::attack(void)
 {
-    if (isOut() == false)
+    if (isOutForAtk() == false)
     {
-        _power -= BASE_COST_POWER;
+        setPower(_power - PEASANT_ATK_COST_POWER);
         std::cout << _name << " tosses a stone." << std::endl;
-        return BASE_DAMAGE;
+        return PEASANT_ATK_DAMAGE;
     }
     else
         return 0;
@@ -86,38 +113,38 @@ int                     Peasant::attack(void)
 
 int                     Peasant::special(void)
 {
-    if (isOut() == false)
+    if (isOutForSpc() == false)
     {
-        _power -= 0;
+        setPower(_power - PEASANT_SPC_COST_POWER);
         std::cout << _name << " doesn't know any special move." << std::endl;
-        return 0;
+        return PEASANT_SPC_DAMAGE;
     }
     else
         return 0;
-
 }
 
 void                    Peasant::rest(void)
 {
-    if (_power >= 0 && _power <= BASE_POWER)
+    if (isOutForRest() == false)
     {
-        _power += BASE_CURE_POWER;
-        if (_power > BASE_POWER)
-            _power = BASE_POWER;
+        setPower(_power + PEASANT_CURE_POWER);
+        setHp(_hp + 0);
         std::cout << _name << " takes a nap." << std::endl;
     }
 }
 
 void                    Peasant::damage(int damage)
 {
-    if (isOut() == false)
+    if (_hp > 0)
     {
-        _hp -= damage;
-        if (isOut() == false)
-            std::cout << _name << " takes " << damage << " damage." << std::endl;
-        else
-            isOut();
-        if (_hp < 0)
-            _hp = 0;
+        setHp(_hp - damage);
+        (_hp <= 0) ? std::cout << _name << " is out of combat." << std::endl :
+        std::cout << _name << " takes " << damage << " damage." << std::endl;
+
+        if (_hp <= 0)
+            std::cout << _name << " is out of combat." << std::endl;
     }
+    else
+        std::cout << _name << " is out of combat." << std::endl;
+
 }

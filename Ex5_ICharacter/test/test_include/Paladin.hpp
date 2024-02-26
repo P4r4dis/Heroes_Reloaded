@@ -8,7 +8,8 @@
 #define PALADIN_HP 100
 #define PALADIN_POWER 100
 
-class                       Paladin : virtual public Knight, virtual public Priest
+class                       Paladin :    public Knight,
+                                         public Priest
 {
     public:
         Paladin(const std::string &name, int power);

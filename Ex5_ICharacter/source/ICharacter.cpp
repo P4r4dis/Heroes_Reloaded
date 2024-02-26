@@ -1,4 +1,4 @@
-#include "../test_include/ICharacter.hpp"
+#include "../include/ICharacter.hpp"
 
 ICharacter::ICharacter(void)
 {}
