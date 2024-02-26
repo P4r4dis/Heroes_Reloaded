@@ -990,42 +990,44 @@ Test(ICharacter, test_ICharacter_special, .init = redirect_all_stdout)
     );
 }
 
-// Test(ICharacter, test_ICharacter_rest, .init = redirect_all_stdout)
-// {
-//     {
-//         ICharacter  *peasant = new Peasant("Gildas", 42);
-//         ICharacter  *knight = new Knight("Arthur", 20);
-//         ICharacter  *enchanter = new Enchanter("Merlin", 20);
-//         ICharacter  *priest = new Priest("Trichelieu", 20);
-//         ICharacter  *paladin = new Paladin("Uther", 99);
+Test(ICharacter, test_ICharacter_rest, .init = redirect_all_stdout)
+{
+    {
+        ICharacter  *peasant = new Peasant("Gildas", 42);
+        ICharacter  *knight = new Knight("Arthur", 20);
+        ICharacter  *enchanter = new Enchanter("Merlin", 20);
+        ICharacter  *priest = new Priest("Trichelieu", 20);
+        ICharacter  *paladin = new Paladin("Uther", 99);
 
-//         cr_assert(peasant != nullptr);
-//         cr_assert(knight != nullptr);
-//         cr_assert(enchanter != nullptr);
-//         cr_assert(priest != nullptr);
-//         cr_assert(paladin != nullptr);
+        cr_assert(peasant != nullptr);
+        cr_assert(knight != nullptr);
+        cr_assert(enchanter != nullptr);
+        cr_assert(priest != nullptr);
+        cr_assert(paladin != nullptr);
 
-//         cr_assert(peasant->attack() == 5);
-//         cr_assert(knight->special() == 0);
+        cr_assert(peasant->attack() == 5);
+        cr_assert(knight->special() == 0);
+        enchanter->rest();
+        cr_assert(enchanter->getPower() == 100);
+    }
 
-//     }
-
-//     cr_assert_stdout_eq_str
-//     (
-//         "Gildas goes for an adventure.\n"
-//         "Arthur goes for an adventure.\n"
-//         "Arthur vows to protect the kingdom.\n"
-//         "Merlin goes for an adventure.\n"
-//         "Merlin learns magic from his spellbook.\n"
-//         "Trichelieu goes for an adventure.\n"
-//         "Trichelieu learns magic from his spellbook.\n"
-//         "Trichelieu enters in the order.\n"
-//         "Uther goes for an adventure.\n"
-//         "Uther vows to protect the kingdom.\n"
-//         "Uther learns magic from his spellbook.\n"
-//         "Uther enters in the order.\n"
-//         "Uther fights for the light.\n"
-//         "Gildas tosses a stone.\n"
-//         "Arthur is out of power.\n"
-//     );
-// }
+    cr_assert_stdout_eq_str
+    (
+        "Gildas goes for an adventure.\n"
+        "Arthur goes for an adventure.\n"
+        "Arthur vows to protect the kingdom.\n"
+        "Merlin goes for an adventure.\n"
+        "Merlin learns magic from his spellbook.\n"
+        "Trichelieu goes for an adventure.\n"
+        "Trichelieu learns magic from his spellbook.\n"
+        "Trichelieu enters in the order.\n"
+        "Uther goes for an adventure.\n"
+        "Uther vows to protect the kingdom.\n"
+        "Uther learns magic from his spellbook.\n"
+        "Uther enters in the order.\n"
+        "Uther fights for the light.\n"
+        "Gildas tosses a stone.\n"
+        "Arthur is out of power.\n"
+        "Merlin meditates.\n"
+    );
+}

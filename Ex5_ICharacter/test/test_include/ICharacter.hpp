@@ -9,6 +9,9 @@ class                   ICharacter
     public:
         virtual int     attack(void) = 0;
         virtual int     special(void) = 0;
+        virtual void    rest(void) = 0;
+
+        virtual int     getPower(void) const = 0;
     private:
 };
 
