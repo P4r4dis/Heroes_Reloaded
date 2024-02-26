@@ -160,3 +160,9 @@ void                    Peasant::drink(const PowerPotion& potion)
     setPower(getPower() + potion.getValuePotion());
     std::cout << getName() << " power is restored." << std::endl;
 }
+
+void                    Peasant::drink(const HealthPotion& potion)
+{
+    setHp(getHp() + potion.getValuePotion());
+    std::cout << getName() << " feels rejuvenated." << std::endl;
+}
